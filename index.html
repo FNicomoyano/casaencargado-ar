@@ -2,31 +2,27 @@
 <html>
   <head>
     <title>AR Model Viewer</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/3.3.2/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
     <style>
       body { margin: 0; overflow: hidden; }
-      a-scene { width: 100vw; height: 100vh; }
     </style>
   </head>
   <body>
     <a-scene
-      vr-mode-ui="enabled: false"
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false"
+      renderer="logarithmicDepthBuffer: true;"
     >
-      <!-- AR marker -->
+      <a-assets>
+        <a-asset-item id="model" src="Casaencargado-3DView.glb"></a-asset-item>
+      </a-assets>
+
       <a-marker type="pattern" url="pattern-Logo.patt">
-        <!-- 3D model -->
-        <a-entity
-          gltf-model="Casaencargado-3DView.glb"
-          scale="0.1 0.1 0.1"
-          position="0 0 0"
-          rotation="0 0 0"
-        ></a-entity>
+        <a-entity gltf-model="#model" scale="0.1 0.1 0.1"></a-entity>
       </a-marker>
 
-      <!-- Required camera for AR.js -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
